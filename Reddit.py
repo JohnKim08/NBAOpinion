@@ -20,8 +20,8 @@ import csv
 ball = praw.Reddit(client_id='XABa6FL8_FKn2A', \
                      client_secret='6eqQMtSWufgR26l4hHPqjQzmveo', \
                      user_agent='NBAOpinion', \
-                     username='badrice-09', \
-                     password='Jk315097!')
+                     username='TOBEFILLED', \
+                     password='TOBEFILLED')
 
 Thread = ball.subreddit('lakers')
 
