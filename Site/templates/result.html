@@ -8,30 +8,30 @@ Results Page
 <div>Team: {{ team }}</div>
 Player Name: {{ name }}
 
-    <div id="piechart"></div>
-    <script type="text/javascript">
-    
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+<div id="piechart"></div>
+<script type="text/javascript">
 
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['Sleep', 8],
-        ['Sleep', 2],
-        ['Sleep', 2],
-        ['Sleep', 2],
-        ['Sleep', 2],
-        ['Sleep', 8]
-    ]); 
-    
-    var options = {'title':'My Average Day', 'width':550, 'height':400};
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 
-    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-    chart.draw(data, options);
-    }
-    
-    </script>
+function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+    ['Task', 'Hours per Day'],
+    ['Sleep', 8],
+    ['Sleep', 2],
+    ['Sleep', 2],
+    ['Sleep', 2],
+    ['Sleep', 2],
+    ['Sleep', 8]
+]); 
+
+var options = {'title':'My Average Day', 'width':550, 'height':400};
+
+var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+chart.draw(data, options);
+}
+
+</script>
 
 
 
