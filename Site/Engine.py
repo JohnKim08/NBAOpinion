@@ -22,7 +22,7 @@ ball = praw.Reddit(client_id='yPIw50n6GcazPw', \
                      client_secret='U7m7nL_04ND6KgrGnwznkgTvCIY', \
                      user_agent='NBAOpinion', \
                      username='BallDontLie12', \
-                     password='dubvam-xynpuf-1Gedko')
+                     password='-')
 
 player_name = "Lebron" 
 team = "lakers"
