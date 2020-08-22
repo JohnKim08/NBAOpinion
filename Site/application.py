@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, render_template, request, jsonify 
 
 from flask import Markup
-
+import Engine
 
 
 app = Flask(__name__)
@@ -14,7 +14,11 @@ def index():
 def result():
     team = request.form.get("team")
     name = request.form.get("name")
-    return render_template("result.html", name=name, team=team )
+    results = Engine.get_results(name,team)
+ 
+    return render_template("result.html", name=name, team=team, results=results)
+
+
 
 if __name__  == "__main__":
     app.run()

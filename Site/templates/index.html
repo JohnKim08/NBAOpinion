@@ -12,8 +12,8 @@ NBA Opinion
     <form action="{{ url_for('result') }}" method="post">
         <div>
             <select name="team" id="teams" action="{{ url_for('result') }}" method="post">
-                <option value= "" selected disbled > Choose team</option>
-                <option value="hawks">Atlanta Hawks</option>
+                <option value= "" selected disbled > Choose team</option> 
+                <option value="hawks">Atlanta Hawks</option> 
                 <option value="celtics">Boston Celtics</option>
                 <option value="nets">Brooklyn Nets</option>
                 <option value="hornets">Charlotte Hornets</option>
@@ -46,7 +46,7 @@ NBA Opinion
             </select>
         </div>
 
-        <input type="text" name="name" placeholder="Enter a player's name">
+        <input type="text" id = "name" name="name" placeholder="Enter a player's name">
         <button>Submit. Ball is life.</button>
     </form>
 

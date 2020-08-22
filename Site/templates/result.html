@@ -4,6 +4,7 @@
 Results Page
 {% endblock %}
 
+
 {% block body %}
 <div>Team: {{ team }}</div>
 Player Name: {{ name }}
@@ -15,21 +16,21 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-    ['Task', 'Hours per Day'],
-    ['Sleep', 8],
-    ['Sleep', 2],
-    ['Sleep', 2],
-    ['Sleep', 2],
-    ['Sleep', 2],
-    ['Sleep', 8]
-]); 
+    // .log is basically a print statement to the console to check if the results made it to the page.
+    console.log({{ results|tojson }} )
+    var tableData =  JSON.parse({{results|tojson}})
+    var data = new google.visualization.DataTable();
+    data.addColumn("Type of Comment", "Number of Comments");
+    data.addColumn('number', 'count');
+    data.addRows(tableData)
 
-var options = {'title':'My Average Day', 'width':550, 'height':400};
+
+var options = {'title': {{ name|tojson }},'width':550, 'height':400}
 
 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 chart.draw(data, options);
 }
+
 
 </script>
 
