@@ -1,3 +1,3 @@
 import Engine
 
-print(Engine.get_results("lebron","lakers"))
+print(Engine.get_results("Lebron","lakers"))

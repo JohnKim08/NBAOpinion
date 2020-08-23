@@ -18,7 +18,7 @@ import datetime
 import csv
 import json
 import os 
-
+ids = [] 
 #from Site import  application
 ball = praw.Reddit(client_id='yPIw50n6GcazPw', \
                      client_secret='U7m7nL_04ND6KgrGnwznkgTvCIY', \
@@ -28,21 +28,22 @@ ball = praw.Reddit(client_id='yPIw50n6GcazPw', \
 
 
 def get_results(name, team ):
-
+  
   #First does it already exist 
     #if yes then use the old data 
   #if doesn't exist 
     #call the function 
-  if(os.path.isfile(f"static/{team}{name}.json")):
-    with open(f"static/{team}{name}.json","r") as file:
+  if(os.path.isfile(f"Data/{team}{name}.json")):
+    with open(f"Data/{team}{name}.json","r") as file:
       return json.load(file)
   else:
     #This code converts the team name into the sub 
     print(f"team={team}")
     sub = ""
+    #Note to self someone needs to turn this into a dictionary it looks really bad. 
     if(team == "hawks"):
       sub = "AtlantaHawks"
-    if(team == "warrios"):
+    if(team == "warriors"):
       sub = "warriors"
     if(team == "lakers"):
       sub = "lakers"
@@ -116,7 +117,6 @@ def get_results(name, team ):
         data = json.loads(r.text)
         return data['data']
 
-
     def collectSubData(subm):
         subData = list() #list to store data points
         title = subm['title']
@@ -152,10 +152,15 @@ def get_results(name, team ):
         print(str(datetime.datetime.fromtimestamp(data[-1]['created_utc'])))
         after = data[-1]['created_utc']
         data = getPushshiftData(query, after, before, sub)
-
-
-    ids = []
+    # print(str(len(subStats)) + " submissions have added to list")
+    # print("1st entry is:")
+    # print(list(subStats.values())[0][0][1] + " created: " + str(list(subStats.values())[0][0][5]))
+    # print("Last entry is:")
+    # print(list(subStats.values())[-1][0][1] + " created: " + str(list(subStats.values())[-1][0][5]))
+    
+    
     def updateSubs_file():
+        global ids 
         upload_count = 0
         filename = "NBA.csv"
         file = filename
@@ -170,34 +175,32 @@ def get_results(name, team ):
         with open(filename) as file:
           reader = csv.reader(file)
           header = next(reader)
-          
           # Extract post ids
           ids = []
           for row in reader:
               id = row[0]
-              ids.append(row)
-    return ids 
+              ids.append(id)
         #df = pd.read_csv(filename)
         #matrix2 = df[df.columns[0]].as_matrix()
-        #global ids 
         #ids = matrix2.tolist()
-        #with open(filename) as file:
-          #ids = [row.split()[0] for row in file]
-            #reader = csv.reader(file)
-            #header = next(reader)
+
+        # with open(filename) as file:
+        #   ids = [row.split()[0] for row in file]
+        #   reader = csv.reader(file)
+        #   header = next(reader)
             
-            # Extract post ids
+        #     Extract post ids
             
-            #for row in reader:
-                #id = row[0]
-                #ids.append(row)
+        #   for row in reader:
+        #         id = row[0]
+        #         ids.append(row)
 
         
 
     #print(ids)
     #iterate through the the list ids and also the comments through those posts
-    something = updateSubs_file() 
-    print(f"ids={something}") 
+    updateSubs_file() 
+    #print(f"ids={ids}")
 
     CommentText= []
     for idcodes in range(len(ids)):
@@ -233,10 +236,10 @@ def get_results(name, team ):
 
     dictlist = []
     for key, value in result.items():
-        temp = [key,value]
+        temp = [key,int(value)]
         dictlist.append(temp)
         
-    with open(f"static/{team}{name}.json","w") as file:
+    with open(f"Data/{team}{name}.json","w") as file:
       json.dump(dictlist, file)
 
     return dictlist
