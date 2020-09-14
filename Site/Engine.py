@@ -18,6 +18,8 @@ import datetime
 import csv
 import json
 import os 
+
+#from collections import defaultdic
 ids = [] 
 #from Site import  application
 ball = praw.Reddit(client_id='yPIw50n6GcazPw', \
@@ -41,6 +43,8 @@ def get_results(name, team ):
     print(f"team={team}")
     sub = ""
     #Note to self someone needs to turn this into a dictionary it looks really bad. 
+    #Might have to add another variable like SEASON so it picks the correct before 
+    # after variables.
     if(team == "hawks"):
       sub = "AtlantaHawks"
     if(team == "warriors"):
@@ -138,6 +142,7 @@ def get_results(name, team ):
     query = "[Post Game Thread]"
     subCount = 0
     subStats = {}
+    # Get the correct unix timestamps for 
     before = "1538352000"
     after = "1514764800"
     data = getPushshiftData(query, after, before, sub)
@@ -217,7 +222,7 @@ def get_results(name, team ):
         """Given list of comments, creates new list of comments that contain keyword"""
         new_list = [i for i in comments if keyword in i]
         return (new_list)
-    #dataset = substring_search(dataset,name)
+
 
     def get_reddit_sentiment(post):
       blob = TextBlob(post)
@@ -234,6 +239,18 @@ def get_results(name, team ):
     unique, counts = np.unique(sentiments,return_counts = True)
     result = dict(zip(unique, counts))
 
+    if "posistive" in result:
+      print("Pos exist")
+    else:
+      result['posistive'] = 0
+    if "negative" in result:
+      print("Negative exist")
+    else:
+      result['negative']= 0 
+    if "neutral" in result:
+      print("Neg exists")
+    else:
+        result['neutral'] = 0 
     dictlist = []
     for key, value in result.items():
         temp = [key,int(value)]
