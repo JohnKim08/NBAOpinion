@@ -15,6 +15,7 @@ def result():
     team = request.form.get("team")
     name = request.form.get("name")
     results = Engine.get_results(name,team)
+
     #Probably need to add seasons and their dates
     return render_template("result.html", name=name, team=team, results=results)
 

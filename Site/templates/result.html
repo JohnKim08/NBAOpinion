@@ -8,8 +8,8 @@ Results Page
 {% block body %}
 <div>Team: {{ team }}</div>
 Player Name: {{ name }}
-
 <div id="piechart"></div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
 google.charts.load('current', {'packages':['corechart']});
@@ -18,19 +18,19 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
     // .log is basically a print statement to the console to check if the results made it to the page.
     console.log({{ results|tojson }} )
-    // var tableData =  JSON.parse({{results|tojson}})
-    // var data = new google.visualization.DataTable();
-    // data.addColumn("Type of Comment", "Number of Comments");
-    // data.addColumn('number', 'count');
-    // data.addRows(tableData)
+    
+  
+    var input = {{ results|tojson }}
+    input.unshift(["Type of Comments", "Number"]);
+
+    var data = google.visualization.arrayToDataTable(input);
     
 
-var options = {'title': {{ name|tojson }},'width':550, 'height':400}
+var options = {'title': {{ name|tojson }} };
 
 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 chart.draw(data, options);
 }
-
 
 </script>
 
@@ -39,8 +39,8 @@ chart.draw(data, options);
 
 
 
+
+
+
+
 {% endblock %}
-
-
-
-

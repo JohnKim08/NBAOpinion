@@ -239,7 +239,7 @@ def get_results(name, team ):
     unique, counts = np.unique(sentiments,return_counts = True)
     result = dict(zip(unique, counts))
 
-    if "posistive" in result:
+    if "positive" in result:
       print("Pos exist")
     else:
       result['posistive'] = 0
