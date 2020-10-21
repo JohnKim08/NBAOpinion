@@ -22,11 +22,11 @@ import os
 #from collections import defaultdic
 ids = [] 
 #from Site import  application
-ball = praw.Reddit(client_id='yPIw50n6GcazPw', \
-                     client_secret='U7m7nL_04ND6KgrGnwznkgTvCIY', \
-                     user_agent='NBAOpinion', \
-                     username='BallDontLie12', \
-                     password='dubvam-xynpuf-1Gedko')
+ball = praw.Reddit(client_id='2CX_cQfQ3qz1XA', \
+                     client_secret='qvlWofksZ2L3SnWiBc-SkOHtWXk', \
+                     user_agent='NBA Opinion', \
+                     username='Wahoo2019', \
+                     password='Cavs2019!')
 
 
 def get_results(name, team ):
