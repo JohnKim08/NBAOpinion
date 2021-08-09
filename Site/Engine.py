@@ -22,11 +22,11 @@ import os
 #from collections import defaultdic
 ids = [] 
 #from Site import  application
-ball = praw.Reddit(client_id='2CX_cQfQ3qz1XA', \
-                     client_secret='qvlWofksZ2L3SnWiBc-SkOHtWXk', \
-                     user_agent='NBA Opinion', \
-                     username='Wahoo2019', \
-                     password='Cavs2019!')
+ball = praw.Reddit(client_id='k7V8AmooJIfLtmKfR3YLIg', \
+                     client_secret='XLqfxZJSjyFsxQYQUdKZhYxD1ckslA', \
+                     user_agent='NBAOpinion', \
+                     username='IgotTheResultsBack', \
+                     password='Lisa2003!')
 
 
 def get_results(name, team ):
@@ -35,8 +35,8 @@ def get_results(name, team ):
     #if yes then use the old data 
   #if doesn't exist 
     #call the function 
-  if(os.path.isfile(f"Data/{team}{name}.json")):
-    with open(f"Data/{team}{name}.json","r") as file:
+  if(os.path.isfile(f"/Users/johnkim/Desktop/NBAOpinion//Data/{team}{name}.json")):
+    with open(f"/Users/johnkim/Desktop/NBAOpinion//Data/{team}{name}.json","r") as file:
       return json.load(file)
   else:
     #This code converts the team name into the sub 
@@ -256,7 +256,7 @@ def get_results(name, team ):
         temp = [key,int(value)]
         dictlist.append(temp)
         
-    with open(f"Data/{team}{name}.json","w") as file:
+    with open(f"/Users/johnkim/Desktop/NBAOpinion//Data/{team}{name}.json","w") as file:
       json.dump(dictlist, file)
 
     return dictlist

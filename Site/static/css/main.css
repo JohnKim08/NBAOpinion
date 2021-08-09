@@ -1,0 +1,7 @@
+form {
+    display: inline-flexbox;
+}
+h2.piechartheader {
+    text-align: center;
+    font-family: 'Noto Sans JP', sans-serif;
+}

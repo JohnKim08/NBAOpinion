@@ -6,10 +6,12 @@ Results Page
 
 
 {% block body %}
-<div>Team: {{ team }}</div>
-Player Name: {{ name }}
+<!-- <div>Team: {{ team }}</div>
+Player Name: {{ name }} -->
+<h2 class="piechartheader"> {{ name|tojson }} sentiment analysis based on r/{{ team }} </h2>
 <div id="piechart"></div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 
 google.charts.load('current', {'packages':['corechart']});
@@ -26,13 +28,41 @@ function drawChart() {
     var data = google.visualization.arrayToDataTable(input);
     
 
-var options = {'title': {{ name|tojson }} };
-
+// var options = {'title': {{ name|tojson }} };
+var options = {titlePosition: 'none'}
 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 chart.draw(data, options);
 }
 
+    google.load('search', '1');
+    google.setOnLoadCallback(OnLoad);
+    var search;
+
+    //i suggest instead of this to make keywords list so first to pick random keyword than to do search and pick random image
+    var keyword = {{name|tojson }} + {{ team }};
+
+    function OnLoad()
+    {
+        search = new google.search.ImageSearch();
+
+        search.setSearchCompleteCallback(this, searchComplete, null);
+
+        search.execute(keyword);
+    }
+
+    function searchComplete()
+    {
+        if (search.results && search.results.length > 0)
+        {
+            var rnd = Math.floor(Math.random() * search.results.length);
+
+            //you will probably use jQuery and something like: $('body').css('background-image', "url('" + search.results[rnd]['url'] + "')");
+            document.body.style.backgroundImage = "url('" + search.results[rnd]['url'] + "')";
+        }
+    }
+
 </script>
+
 
 
 
