@@ -15,7 +15,4 @@ This web tool scrapes through comment data on NBA teams subreddits. In particula
 ## Result
 <img width="1437" alt="Screen Shot 2020-10-02 at 10 24 17 PM" src="https://user-images.githubusercontent.com/47199118/94981182-06f73280-04fe-11eb-8672-3b4aae0a90fa.png">
 
-## Release
-https://nbaopinion.herokuapp.com
-
 Designed and Programmed by John Kim and Ahmed Abukar. 
